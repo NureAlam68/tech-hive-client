@@ -2,19 +2,10 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { HiChip } from 'react-icons/hi';
 import { BiNetworkChart } from 'react-icons/bi';
+import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
-  // TODO: Replace with actual auth state
-  const isLoggedIn = true;
-  const user = {
-    name: "Nure Alam",
-    image: null
-  };
-
-  const handleLogout = () => {
-    // TODO: Implement logout logic
-    console.log("Logging out...");
-  };
+  const { user, logOut } = useAuth();
 
   return (
     <>
@@ -60,7 +51,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {!isLoggedIn ? (
+          {!user ? (
             <div className="flex gap-2">
               <Link 
                 to="/login" 
@@ -78,16 +69,16 @@ const Navbar = () => {
           ) : (
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                {user.image ? (
+                {user.photoURL ? (
                   <div className="w-10 rounded-full ring ring-primary ring-offset-2">
-                    <img src={user.image} alt={user.name} />
+                    <img src={user.photoURL} alt={user.displayName} />
                   </div>
                 ) : (
                   <FaUserCircle className="w-8 h-8 text-primary" />
                 )}
               </div>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52">
-                <li className="menu-title px-4 py-2 text-primary font-semibold">{user.name}</li>
+                <li className="menu-title px-4 py-2 text-primary font-semibold">{user.displayName}</li>
                 <div className="divider my-0"></div>
                 <li>
                   <Link to="/dashboard" className="text-base">
@@ -95,9 +86,11 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <button onClick={handleLogout} className="text-base text-error">
+                  <Link to="/">
+                  <button onClick={logOut} className="text-base text-error">
                     Logout
                   </button>
+                  </Link>
                 </li>
               </ul>
             </div>
