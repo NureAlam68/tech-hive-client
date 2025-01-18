@@ -21,7 +21,7 @@ const Slide = ({ image, title, text }) => {
           <Link
             to='/products'
           >
-            <button className='text-white hover:bg-black bg-primary px-6 py-2 mt-4 font-bold'>
+            <button className='text-white bg-black hover:bg-primary px-6 py-2 mt-4 font-bold rounded-tr-[16px] rounded-bl-[16px] border border-primary'>
                 Explore
             </button>
           </Link>
