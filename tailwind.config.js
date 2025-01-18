@@ -10,5 +10,15 @@ export default {
     extend: {},
   },
   plugins: [daisyui],
+  daisyui: {
+    themes: [{
+      light: {
+        // eslint-disable-next-line no-undef
+        ...require("daisyui/src/theming/themes")["light"],
+        primary: "#2563eb",
+        accent: "#0f766e",
+      },
+    }],
+  },
 }
 

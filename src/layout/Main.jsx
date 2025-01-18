@@ -1,9 +1,10 @@
+import Navbar from "../components/Navbar";
 
 
 const Main = () => {
     return (
         <div>
-            <h1>TechHive</h1>
+            <Navbar></Navbar>
         </div>
     );
 };
