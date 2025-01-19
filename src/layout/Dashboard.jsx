@@ -27,7 +27,7 @@ function Dashboard() {
 
   const menuItems = {
     User: [
-      { to: '/dashboard/profile', icon: <UserCircle size={20} />, label: 'My Profile' },
+      { to: '/dashboard/userProfile', icon: <UserCircle size={20} />, label: 'My Profile' },
       { to: '/dashboard/addProduct', icon: <PlusCircle size={20} />, label: 'Add Product' },
       { to: '/dashboard/myProducts', icon: <Package size={20} />, label: 'My Products' },
     ],
@@ -43,7 +43,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-slate-50">
+    <div className="flex h-screen bg-blue-950">
       {/* Overlay for mobile */}
       {isSidebarOpen && (
         <div
