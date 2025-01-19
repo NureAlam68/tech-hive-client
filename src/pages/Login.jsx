@@ -3,8 +3,7 @@ import loginLottie from "../assets/lottie/login.json";
 import Lottie from "lottie-react";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
-
-
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn, setUser, signInWithGoogle } = useAuth();
@@ -22,7 +21,7 @@ const Login = () => {
       .then((res) => {
         setUser(res.user);
         e.target.reset();
-        toast.success('Signin Successful')
+        toast.success("Signin Successful");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -36,7 +35,7 @@ const Login = () => {
     signInWithGoogle()
       .then((res) => {
         setUser(res.user);
-        toast.success('Signin Successful')
+        toast.success("Signin Successful");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -46,6 +45,9 @@ const Login = () => {
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center min-h-screen">
+      <Helmet>
+        <title>TechHive | Login</title>
+      </Helmet>
       <div className="lg:w-[400px]">
         <form onSubmit={handleSubmit} className="w-full max-w-lg p-3">
           <h2 className="text-sm font-semibold text-center text-blue-500">

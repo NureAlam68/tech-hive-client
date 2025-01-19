@@ -1,15 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import ErrorImg from "../assets/error.jpg"
+import ErrorImg from "../assets/error.jpg";
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
-    const handleNavigate = () => {
-        navigate("/")
-    }
-    return (
-        <div className="lg:h-[500px] md:w-[500px] mx-auto mt-[100px]">
+  const handleNavigate = () => {
+    navigate("/");
+  };
+  return (
+    <div className="lg:h-[500px] md:w-[500px] mx-auto mt-[100px]">
+      <Helmet>
+        <title>TechHive | Error Page</title>
+      </Helmet>
       <div>
         <img src={ErrorImg} alt="" />
       </div>
@@ -20,7 +23,7 @@ const ErrorPage = () => {
         Go Home
       </button>
     </div>
-    );
+  );
 };
 
 export default ErrorPage;
