@@ -12,13 +12,13 @@ function UserProfile() {
           <div className="flex flex-col items-center">
             <img
               className="h-32 w-32 rounded-full object-cover"
-              src={user.photoURL}
-              alt={user.displayName}
+              src={user?.photoURL}
+              alt={user?.displayName}
             />
             <h2 className="mt-4 text-xl font-bold text-gray-900">
-              {user.displayName}
+              {user?.displayName}
             </h2>
-            <p className="text-gray-500">{user.email}</p>
+            <p className="text-gray-500">{user?.email}</p>
             
             {isSubscribed ? (
               <div className="mt-6">
