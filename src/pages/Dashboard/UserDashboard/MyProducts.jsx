@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 const MyProducts = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const navigate = useNavigate();
   
 
 const { data: products = [], refetch, isPending: loading} = useQuery({
@@ -42,11 +41,6 @@ const { data: products = [], refetch, isPending: loading} = useQuery({
           }
         }
       });
-  };
-
-  // Handle Update
-  const handleUpdate = (id) => {
-    navigate(`/update-product/${id}`);
   };
 
   return (
@@ -87,14 +81,15 @@ const { data: products = [], refetch, isPending: loading} = useQuery({
                       </span>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
+                      <Link to={`/dashboard/updateProduct/${product._id}`}>
                       <button
-                        onClick={() => handleUpdate(product)}
                         className="bg-blue-500 text-white px-3 py-1 rounded-md mr-2 hover:bg-blue-600"
                       >
                         Update
                       </button>
+                      </Link>
                       <button
-                        onClick={() => handleDelete(product)}
+                        onClick={() => handleDelete(product._id)}
                         className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 mt-[2px] md:mt-0"
                       >
                         Delete

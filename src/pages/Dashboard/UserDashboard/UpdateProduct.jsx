@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { WithContext as ReactTags } from "react-tag-input";
-// import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
 
 const KeyCodes = {
   comma: 188,
@@ -14,61 +14,59 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-export default function AddProduct() {
+const UpdateProduct = () => {
   const { user } = useAuth();
-//   const navigate = useNavigate();
-  const [tags, setTags] = useState([]);
+  const { _id, productName, productImage, description, externalLink, tags } = useLoaderData();
+  console.log(productName, tags)
+  
+//   const [tagsState, setTagsState] = useState([]);
+  const [tagsState, setTagsState] = useState(
+    tags.map((tag) => ({ id: tag, text: tag })) 
+);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const axiosPublic = useAxiosPublic();
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
   const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
+    setTagsState(tagsState.filter((tag, index) => index !== i));
   };
 
   const handleAddition = (tag) => {
-    setTags([...tags, tag]);
+    setTagsState([...tagsState, tag]);
   };
 
   const handleDrag = (tag, currPos, newPos) => {
-    const newTags = tags.slice();
+    const newTags = tagsState.slice();
     newTags.splice(currPos, 1);
     newTags.splice(newPos, 0, tag);
-    setTags(newTags);
+    setTagsState(newTags);
   };
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
       const formData = {
-        ...data,
-        tags: tags.map((tag) => tag.text),
-          name: user.displayName,
-          email: user.email,
-          image: user.photoURL,
-        createdAt: new Date().toISOString(),
+        productName: data.productName,
+        productImage: data.productImage,
+        description: data.description,
+        externalLink: data.externalLink,
+        tags: tagsState.map((tag) => tag.text),
       };
 
-      const productRes = await axiosPublic.post("/products", formData);
-      if (productRes.data.insertedId) {
-        reset();
-        setTags([]);
-        // navigate("/my-products");
+      const productRes = await axiosPublic.patch(`/products/${_id}`, formData);
+      if (productRes.data.modifiedCount > 0) {
+        // reset();
+        setTagsState([]);
         Swal.fire({
-          title: `${data.productName} is added to the product.`,
+          title: `${data.productName} has been updated.`,
           icon: "success",
           draggable: true,
         });
       }
     } catch (error) {
-      toast.error("Failed to add product. Please try again.");
-      console.error("Error adding product:", error);
+      toast.error("Failed to update product. Please try again.");
+      console.error("Error updating product:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -78,9 +76,7 @@ export default function AddProduct() {
     <div className="min-h-screen bg-green-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Add New Product
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Product</h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Product Name */}
@@ -89,65 +85,52 @@ export default function AddProduct() {
                 Product Name *
               </label>
               <input
+                defaultValue={productName}
                 type="text"
                 placeholder="Enter Product Name"
-                {...register("productName", {
-                  required: "Product name is required",
-                })}
+                {...register("productName", { required: "Product name is required" })}
                 className="mt-1 block w-full rounded-md border border-blue-100 p-[6px]"
               />
               {errors.productName && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.productName.message}
-                </p>
+                <p className="mt-1 text-sm text-red-600">{errors.productName.message}</p>
               )}
             </div>
 
-            {/* Product Image */}
+            {/* Product Image URL */}
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Product Image URL *
               </label>
               <input
                 type="url"
+                defaultValue={productImage}
                 placeholder="Product Image Url"
-                {...register("productImage", {
-                  required: "Product image URL is required",
-                })}
+                {...register("productImage", { required: "Product image URL is required" })}
                 className="mt-1 block w-full rounded-md border border-blue-100 p-[6px]"
               />
               {errors.productImage && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.productImage.message}
-                </p>
+                <p className="mt-1 text-sm text-red-600">{errors.productImage.message}</p>
               )}
             </div>
 
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Description *
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Description *</label>
               <textarea
                 placeholder="Description"
-                {...register("description", {
-                  required: "Description is required",
-                })}
+                defaultValue={description}
+                {...register("description", { required: "Description is required" })}
                 rows={4}
                 className="mt-1 block w-full px-[6px] rounded-md border border-blue-100"
               />
               {errors.description && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.description.message}
-                </p>
+                <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>
               )}
             </div>
 
             {/* Owner Info */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium text-gray-900">
-                Product Owner Information
-              </h3>
+              <h3 className="text-lg font-medium text-gray-900">Product Owner Information</h3>
               <div className="flex items-center space-x-4">
                 <img
                   src={user?.photoURL}
@@ -173,11 +156,9 @@ export default function AddProduct() {
 
             {/* Tags */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Tags
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Tags</label>
               <ReactTags
-                tags={tags}
+                tags={tagsState}
                 autofocus={false}
                 delimiters={delimiters}
                 handleDelete={handleDelete}
@@ -197,11 +178,10 @@ export default function AddProduct() {
 
             {/* External Links */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                External Link
-              </label>
+              <label className="block text-sm font-medium text-gray-700">External Link</label>
               <input
                 type="url"
+                defaultValue={externalLink}
                 {...register("externalLink")}
                 placeholder="https://example.com"
                 className="mt-1 block w-full rounded-md border border-blue-100 p-[6px]"
@@ -213,11 +193,9 @@ export default function AddProduct() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-                  isSubmitting ? "opacity-75 cursor-not-allowed" : ""
-                }`}
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}`}
               >
-                {isSubmitting ? "Adding Product..." : "Add Product"}
+                {isSubmitting ? "Updating Product..." : "Update Product"}
               </button>
             </div>
           </form>
@@ -225,4 +203,6 @@ export default function AddProduct() {
       </div>
     </div>
   );
-}
+};
+
+export default UpdateProduct;
