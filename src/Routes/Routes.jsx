@@ -7,6 +7,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Dashboard from "../layout/Dashboard";
 import UserProfile from "../pages/Dashboard/UserDashboard/UserProfile";
 import AddProduct from "../pages/Dashboard/UserDashboard/AddProduct";
+import MyProducts from "../pages/Dashboard/UserDashboard/MyProducts";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "addProduct",
         element: <AddProduct></AddProduct>
+      },
+      {
+        path: "myProducts",
+        element: <MyProducts></MyProducts>
       }
     ],
   },

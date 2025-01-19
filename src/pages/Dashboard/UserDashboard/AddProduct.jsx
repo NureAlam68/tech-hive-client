@@ -49,11 +49,9 @@ export default function AddProduct() {
       const formData = {
         ...data,
         tags: tags.map((tag) => tag.text),
-        owner: {
           name: user.displayName,
           email: user.email,
           image: user.photoURL,
-        },
         createdAt: new Date().toISOString(),
       };
 
