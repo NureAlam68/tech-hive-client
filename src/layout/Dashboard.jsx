@@ -1,5 +1,5 @@
-import  { useState } from 'react';
-import { 
+import { useState } from 'react';
+import {
   Home,
   Users,
   BarChart,
@@ -10,13 +10,22 @@ import {
   UserCircle,
   Flag,
   ChevronRight,
-  Menu
+  Menu,
 } from 'lucide-react';
 import { NavLink, Outlet } from 'react-router-dom';
+import useAdmin from '../hooks/useAdmin';
+import useModerator from '../hooks/useModerator';
 
-function Dashboard() {
+const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const role = 'User'; 
+  const [isAdmin] = useAdmin();
+  const [isModerator] = useModerator();
+
+  const role = isAdmin
+    ? 'Admin'
+    : isModerator
+    ? 'Moderator'
+    : 'User';
 
   const navLinkClasses = (isActive) =>
     `flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
@@ -125,6 +134,6 @@ function Dashboard() {
       </main>
     </div>
   );
-}
+};
 
 export default Dashboard;

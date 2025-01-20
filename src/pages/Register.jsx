@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const { signInWithGoogle, setUser, createUser, updateUserProfile } =
-    useAuth();
+  const { signInWithGoogle, setUser, createUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -38,8 +40,23 @@ const Register = () => {
       const result = await createUser(email, password);
       await updateUserProfile(name, photo);
       setUser({ ...result.user, photoURL: photo, displayName: name });
-      toast.success("Signup Successful");
-      navigate("/");
+      // create user entry in the database
+      const userInfo = {
+        name: name,
+        email: email,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate("/");
+        }
+      });
     } catch (err) {
       toast.error(err?.message);
     }
@@ -48,10 +65,24 @@ const Register = () => {
   // Google Signin
   const handleGoogleLogIn = async () => {
     try {
-      await signInWithGoogle();
-
-      toast.success("Signin Successful");
-      navigate("/");
+      const res = await signInWithGoogle();
+      const userInfo = {
+        email: res.user?.email,
+        name: res.user?.displayName,
+      };
+  
+      const response = await axiosPublic.post("/users", userInfo);
+      
+      if (response.data.insertedId || response.data.insertedId === null) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User login successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      }
     } catch (err) {
       toast.error(err?.message);
     }

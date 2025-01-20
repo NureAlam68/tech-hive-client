@@ -4,12 +4,17 @@ import Lottie from "lottie-react";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
   const { signIn, setUser, signInWithGoogle } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,8 +26,24 @@ const Login = () => {
       .then((res) => {
         setUser(res.user);
         e.target.reset();
-        toast.success("Signin Successful");
-        navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          title: "User Login Successful",
+          showClass: {
+            popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+            `
+          },
+          hideClass: {
+            popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+            `
+          }
+        });
+        navigate(from, {replace: true});
       })
       .catch((error) => {
         toast.error(
@@ -31,16 +52,30 @@ const Login = () => {
       });
   };
 
-  const handleGoogleLogIn = () => {
-    signInWithGoogle()
-      .then((res) => {
-        setUser(res.user);
-        toast.success("Signin Successful");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        toast.error("Failed to login: " + error.message);
-      });
+  // Google Signin
+  const handleGoogleLogIn = async () => {
+    try {
+      const res = await signInWithGoogle();
+      const userInfo = {
+        email: res.user?.email,
+        name: res.user?.displayName,
+      };
+  
+      const response = await axiosPublic.post("/users", userInfo);
+      
+      if (response.data.insertedId || response.data.insertedId === null) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User login successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, {replace: true});
+      }
+    } catch (err) {
+      toast.error(err?.message);
+    }
   };
 
   return (
