@@ -66,7 +66,7 @@ const { data: products = [], refetch, isPending: loading} = useQuery({
                 {products.map((product) => (
                   <tr key={product._id} className="hover:bg-gray-50">
                     <td className="border border-gray-300 px-4 py-2">{product.productName}</td>
-                    <td className="border border-gray-300 px-4 py-2">{product.votes || 0}</td>
+                    <td className="border border-gray-300 px-4 py-2">{product.upvote}</td>
                     <td className="border border-gray-300 px-4 py-2">
                       <span
                         className={`px-3 py-1 rounded-full text-sm ${
@@ -77,7 +77,7 @@ const { data: products = [], refetch, isPending: loading} = useQuery({
                             : "bg-yellow-100 text-yellow-800"
                         }`}
                       >
-                        {product.status || "Pending"}
+                        {product.status}
                       </span>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
@@ -89,7 +89,7 @@ const { data: products = [], refetch, isPending: loading} = useQuery({
                       </button>
                       </Link>
                       <button
-                        onClick={() => handleDelete(product._id)}
+                        onClick={() => handleDelete(product)}
                         className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 mt-[2px] md:mt-0"
                       >
                         Delete

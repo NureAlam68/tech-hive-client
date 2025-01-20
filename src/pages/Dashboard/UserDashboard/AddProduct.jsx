@@ -52,6 +52,8 @@ export default function AddProduct() {
           name: user.displayName,
           email: user.email,
           image: user.photoURL,
+          status: 'Pending',
+          upvote: 0,
         createdAt: new Date().toISOString(),
       };
 
