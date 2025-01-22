@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { CheckCircle2, XCircle, Star, ExternalLink, Clock, Shield, BadgeCheck } from "lucide-react";
 
 const ProductReviewQueue = () => {
   const [products, setProducts] = useState([]);
@@ -11,14 +12,9 @@ const ProductReviewQueue = () => {
     const fetchProducts = async () => {
       try {
         const response = await axiosSecure.get("/products");
-
-        // First, filter 'Pending' products and others separately
         const pendingProducts = response.data.filter(product => product.status === "Pending");
         const otherProducts = response.data.filter(product => product.status !== "Pending");
-
-        // Merge them so 'Pending' ones come first
         const sortedProducts = [...pendingProducts, ...otherProducts];
-
         setProducts(sortedProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -97,63 +93,126 @@ const ProductReviewQueue = () => {
     });
   };
 
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case "Pending":
+        return (
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+            <Clock className="w-4 h-4 mr-1" />
+            Pending
+          </span>
+        );
+      case "Accepted":
+        return (
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+            <CheckCircle2 className="w-4 h-4 mr-1" />
+            Accepted
+          </span>
+        );
+      case "Rejected":
+        return (
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+            <XCircle className="w-4 h-4 mr-1" />
+            Rejected
+          </span>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="container mx-auto p-6 bg-white min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Product Review Queue</h1>
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border-separate border-spacing-0 border border-gray-300 rounded-lg shadow-lg">
-          <thead className="bg-blue-500 text-white uppercase">
-            <tr>
-              <th className="border p-2 text-center"></th>
-              <th className="border p-2 text-left">Product Name</th>
-              <th className="border p-2 text-left">View Details</th>
-              <th className="border p-2 text-left">Make Featured</th>
-              <th className="border p-2 text-left">Accept</th>
-              <th className="border p-2 text-left">Reject</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-700">
-            {products.map((product, idx) => (
-              <tr key={product._id} className="border-b hover:bg-gray-100">
-                <td className="border p-2 text-center">{idx + 1}</td>
-                <td className="border p-2">{product.productName}</td>
-                <td className="border p-2">
-                  <Link to={`/product/${product._id}`}>
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-                      View Details
-                    </button>
-                  </Link>
-                </td>
-                <td className="border p-2">
-                  <button
-                    onClick={() => handleFeature(product._id)}
-                    className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 focus:outline-none"
-                  >
-                    Make Featured
-                  </button>
-                </td>
-                <td className="border p-2">
-                  <button
-                    onClick={() => handleAccept(product._id)}
-                    disabled={product.status === "Accepted"}
-                    className={`px-4 py-2 ${product.status === "Accepted" ? "bg-gray-400" : "bg-green-500"} text-white rounded hover:bg-green-600 focus:outline-none`}
-                  >
-                    Accept
-                  </button>
-                </td>
-                <td className="border p-2">
-                  <button
-                    onClick={() => handleReject(product._id)}
-                    disabled={product.status === "Rejected"}
-                    className={`px-4 py-2 ${product.status === "Rejected" ? "bg-gray-400" : "bg-red-500"} text-white rounded hover:bg-red-600 focus:outline-none`}
-                  >
-                    Reject
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center space-x-3">
+            <Shield className="w-8 h-8 text-blue-600" />
+            <h1 className="text-3xl font-bold text-gray-900">Product Review Queue</h1>
+          </div>
+          <div className="bg-blue-100 rounded-full px-4 py-2 flex items-center">
+            <BadgeCheck className="w-5 h-5 text-blue-600 mr-2" />
+            <span className="text-blue-800 font-medium">
+              {products.filter(p => p.status === "Pending").length} Pending Reviews
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          {products.length > 0 ? (
+            <div className="divide-y divide-gray-200">
+              {products.map((product) => (
+                <div 
+                  key={product._id} 
+                  className="p-6 hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3">
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {product.productName}
+                        </h3>
+                        {getStatusBadge(product.status)}
+                      </div>
+                      <p className="mt-1 text-sm text-gray-500">
+                        Submitted on {new Date().toLocaleDateString()}
+                      </p>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Link
+                        to={`/product/${product._id}`}
+                        className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors duration-200"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View Details
+                      </Link>
+                      <button
+                        onClick={() => handleFeature(product._id)}
+                        className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium text-yellow-600 hover:text-yellow-700 hover:bg-yellow-50 transition-colors duration-200"
+                      >
+                        <Star className="w-4 h-4 mr-2" />
+                        Feature
+                      </button>
+                      <button
+                        onClick={() => handleAccept(product._id)}
+                        disabled={product.status === "Accepted"}
+                        className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium ${
+                          product.status === "Accepted"
+                            ? "text-gray-400 bg-gray-100 cursor-not-allowed"
+                            : "text-green-600 hover:text-green-700 hover:bg-green-50"
+                        } transition-colors duration-200`}
+                      >
+                        <CheckCircle2 className="w-4 h-4 mr-2" />
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handleReject(product._id)}
+                        disabled={product.status === "Rejected"}
+                        className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium ${
+                          product.status === "Rejected"
+                            ? "text-gray-400 bg-gray-100 cursor-not-allowed"
+                            : "text-red-600 hover:text-red-700 hover:bg-red-50"
+                        } transition-colors duration-200`}
+                      >
+                        <XCircle className="w-4 h-4 mr-2" />
+                        Reject
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-12">
+              <Shield className="w-16 h-16 text-gray-400 mb-4" />
+              <h3 className="text-xl font-medium text-gray-900 mb-2">
+                No Products to Review
+              </h3>
+              <p className="text-gray-500">
+                There are currently no products waiting for review.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

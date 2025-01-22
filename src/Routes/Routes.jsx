@@ -13,6 +13,7 @@ import ManageUsers from "../pages/Dashboard/AdminDashboard/ManageUsers";
 import ProductReviewQueue from "../pages/Dashboard/ModeratorDashboard/ProductReviewQueue";
 import ProductDetails from "../pages/ProductDetails";
 import ProductsPage from "../pages/ProductsPage";
+import ReportedProducts from "../pages/Dashboard/ModeratorDashboard/ReportedProducts";
 
 export const router = createBrowserRouter([
   {
@@ -71,8 +72,12 @@ export const router = createBrowserRouter([
       },
       // moderator routes
       {
-        path: "ProductReviewQueue",
+        path: "productReviewQueue",
         element: <ProductReviewQueue></ProductReviewQueue>
+      },
+      {
+        path: "reportedContents",
+        element: <ReportedProducts></ReportedProducts>
       }
     ],
   },

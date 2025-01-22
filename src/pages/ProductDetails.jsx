@@ -7,8 +7,8 @@ import { FaExternalLinkAlt, FaThumbsUp } from "react-icons/fa";
 import { MdReport, MdStar, MdStarBorder } from "react-icons/md";
 
 const ProductDetails = () => {
-  const { id } = useParams(); 
-  const { user } = useAuth(); 
+  const { id } = useParams();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
@@ -17,6 +17,7 @@ const ProductDetails = () => {
   const [reviewDescription, setReviewDescription] = useState("");
   const [rating, setRating] = useState(1);
   const [isHovering, setIsHovering] = useState(0);
+  const [isReported, setIsReported] = useState(false);
 
   // Fetch product details
   useEffect(() => {
@@ -25,7 +26,10 @@ const ProductDetails = () => {
         const res = await axiosSecure.get(`/product/${id}`);
         setProduct(res.data);
       } catch (error) {
-        toast.error("Failed to fetch product details.", error.response?.data.message);
+        toast.error(
+          "Failed to fetch product details.",
+          error.response?.data.message
+        );
       }
     };
 
@@ -48,7 +52,9 @@ const ProductDetails = () => {
     }
 
     try {
-      const response = await axiosSecure.patch(`/upvote/${id}`, { email: user?.email });
+      const response = await axiosSecure.patch(`/upvote/${id}`, {
+        email: user?.email,
+      });
       if (response.data.modifiedCount) {
         toast.success("Upvoted successfully!");
         setProduct((prev) => ({
@@ -68,9 +74,11 @@ const ProductDetails = () => {
 
     try {
       await axiosSecure.post(`/report/${id}`, { email: user?.email });
-      toast.success("Product reported successfully!");
+      toast.success("Your report has been submitted. Our team will review it.");
+      setIsReported(true);
     } catch (error) {
-      toast.error("Failed to report product.", error.response?.data.message);
+      // console.log(error);
+      toast.error( error.response?.data.message);
     }
   };
 
@@ -90,7 +98,7 @@ const ProductDetails = () => {
         reviewerName: user.displayName,
         reviewerImage: user.photoURL,
         reviewDescription,
-        rating: parseInt(rating), 
+        rating: parseInt(rating),
       });
 
       if (response.data.success) {
@@ -101,11 +109,11 @@ const ProductDetails = () => {
             reviewerName: user.displayName,
             reviewerImage: user.photoURL,
             reviewDescription,
-            rating: parseInt(rating), 
+            rating: parseInt(rating),
           },
         ]);
         setReviewDescription("");
-        setRating(1); 
+        setRating(1);
       }
     } catch (error) {
       toast.error("Failed to post review.", error.response?.data.message);
@@ -121,7 +129,6 @@ const ProductDetails = () => {
   }
 
   const hasVoted = product.votedUsers?.includes(user?.email);
-
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -142,7 +149,9 @@ const ProductDetails = () => {
             {/* Product Info */}
             <div className="p-8">
               <div className="flex justify-between items-start">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">{product.productName}</h1>
+                <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                  {product.productName}
+                </h1>
                 {product.externalLink && (
                   <a
                     href={product.externalLink}
@@ -164,12 +173,16 @@ const ProductDetails = () => {
                 />
                 <div>
                   <p className="font-medium text-gray-900">{product.name}</p>
-                  <p className="text-sm text-gray-500">{new Date(product.createdAt).toLocaleDateString()}</p>
+                  <p className="text-sm text-gray-500">
+                    {new Date(product.createdAt).toLocaleDateString()}
+                  </p>
                 </div>
               </div>
 
-              <p className="text-lg text-gray-600 mb-6">{product.description}</p>
-              
+              <p className="text-lg text-gray-600 mb-6">
+                {product.description}
+              </p>
+
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-8">
                 {product.tags.map((tag, index) => (
@@ -189,9 +202,10 @@ const ProductDetails = () => {
                   onClick={handleUpvote}
                   disabled={hasVoted || product.email === user?.email}
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all
-                    ${hasVoted || product.email === user?.email
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : "bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lg transform hover:-translate-y-0.5"
+                    ${
+                      hasVoted || product.email === user?.email
+                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                        : "bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lg transform hover:-translate-y-0.5"
                     }`}
                 >
                   <FaThumbsUp className="text-lg" />
@@ -199,15 +213,16 @@ const ProductDetails = () => {
                 </button>
                 <button
                   onClick={handleReport}
-                  disabled={product.email === user?.email}
+                  disabled={isReported || product.email === user?.email}
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all
-                    ${product.email === user?.email
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : "bg-red-500 text-white hover:bg-red-600 hover:shadow-lg transform hover:-translate-y-0.5"
-                    }`}
+    ${
+      isReported || product.email === user?.email
+        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+        : "bg-red-500 text-white hover:bg-red-600 hover:shadow-lg transform hover:-translate-y-0.5"
+    }`}
                 >
                   <MdReport className="text-lg" />
-                  <span>Report</span>
+                  <span>{isReported ? "Reported" : "Report"}</span>
                 </button>
               </div>
             </div>
@@ -222,12 +237,14 @@ const ProductDetails = () => {
               ({reviews.length})
             </span>
           </h2>
-          
+
           {/* Reviews Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {reviews.length === 0 ? (
               <div className="col-span-2 text-center py-12 bg-white rounded-xl">
-                <p className="text-gray-500">No reviews yet. Be the first to review!</p>
+                <p className="text-gray-500">
+                  No reviews yet. Be the first to review!
+                </p>
               </div>
             ) : (
               reviews.map((review, index) => (
@@ -242,7 +259,9 @@ const ProductDetails = () => {
                       className="w-12 h-12 rounded-full object-cover ring-2 ring-blue-100"
                     />
                     <div>
-                      <h4 className="font-semibold text-gray-900">{review.reviewerName}</h4>
+                      <h4 className="font-semibold text-gray-900">
+                        {review.reviewerName}
+                      </h4>
                       <div className="flex gap-1 text-yellow-400">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <span key={star}>
@@ -267,7 +286,9 @@ const ProductDetails = () => {
 
           {/* Post Review Form */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Write a Review</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Write a Review
+            </h3>
             <div className="space-y-6">
               {user ? (
                 <>
@@ -279,7 +300,9 @@ const ProductDetails = () => {
                       className="w-12 h-12 rounded-full object-cover ring-2 ring-blue-100"
                     />
                     <div>
-                      <p className="font-semibold text-gray-900">{user.displayName}</p>
+                      <p className="font-semibold text-gray-900">
+                        {user.displayName}
+                      </p>
                       <p className="text-sm text-gray-500">Verified Customer</p>
                     </div>
                   </div>
@@ -300,9 +323,15 @@ const ProductDetails = () => {
                           className="text-2xl transition-colors focus:outline-none"
                         >
                           {star <= (isHovering || rating) ? (
-                            <MdStar className="text-yellow-400 hover:text-yellow-500" size={32} />
+                            <MdStar
+                              className="text-yellow-400 hover:text-yellow-500"
+                              size={32}
+                            />
                           ) : (
-                            <MdStarBorder className="text-gray-300 hover:text-yellow-200" size={32} />
+                            <MdStarBorder
+                              className="text-gray-300 hover:text-yellow-200"
+                              size={32}
+                            />
                           )}
                         </button>
                       ))}
@@ -336,7 +365,9 @@ const ProductDetails = () => {
                 </>
               ) : (
                 <div className="text-center py-6">
-                  <p className="text-gray-600 mb-4">Please login to write a review</p>
+                  <p className="text-gray-600 mb-4">
+                    Please login to write a review
+                  </p>
                   <button
                     onClick={() => navigate("/login")}
                     className="bg-blue-500 text-white font-medium px-6 py-3 rounded-lg
