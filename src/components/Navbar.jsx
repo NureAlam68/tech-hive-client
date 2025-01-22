@@ -45,9 +45,9 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <Link to="/products" className="text-base hover:text-primary hover:bg-base-200 font-medium">
+              <NavLink to="/products" className="text-base hover:text-primary hover:bg-base-200 font-medium">
                 Products
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
