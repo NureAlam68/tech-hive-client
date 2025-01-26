@@ -15,6 +15,7 @@ import ProductDetails from "../pages/ProductDetails";
 import ProductsPage from "../pages/ProductsPage";
 import ReportedProducts from "../pages/Dashboard/ModeratorDashboard/ReportedProducts";
 import AdminStatistics from "../pages/Dashboard/AdminDashboard/AdminStatistics";
+import ManageCoupons from "../pages/Dashboard/AdminDashboard/ManageCoupons";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "statistics",
         element: <AdminStatistics></AdminStatistics>
+      },
+      {
+        path: "manageCoupons",
+        element: <ManageCoupons></ManageCoupons>
       },
       // moderator routes
       {
