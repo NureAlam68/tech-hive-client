@@ -154,7 +154,7 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
             />
             <button
               onClick={applyCoupon}
-              className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg transition duration-200 font-medium"
+              className="bg-green-100 hover:bg-green-200 text-gray-800 px-4 py-2 rounded-lg transition duration-200 font-medium"
             >
               Apply
             </button>

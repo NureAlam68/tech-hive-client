@@ -15,6 +15,7 @@ import {
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
 import useModerator from '../hooks/useModerator';
+import { Toaster } from 'react-hot-toast';
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -53,6 +54,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex h-screen bg-blue-950">
+      <Toaster></Toaster>
       {/* Overlay for mobile */}
       {isSidebarOpen && (
         <div

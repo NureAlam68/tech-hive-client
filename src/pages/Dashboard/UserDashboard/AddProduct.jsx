@@ -58,7 +58,10 @@ export default function AddProduct() {
       };
 
       const productRes = await axiosPublic.post("/products", formData);
-      if (productRes.data.insertedId) {
+      if (!productRes.data.insertedId) {
+        toast.error("Product not added. Please try again.");
+        return;
+      }
         reset();
         setTags([]);
         // navigate("/my-products");
@@ -67,10 +70,12 @@ export default function AddProduct() {
           icon: "success",
           draggable: true,
         });
-      }
     } catch (error) {
-      toast.error("Failed to add product. Please try again.");
-      console.error("Error adding product:", error);
+      if (error.response?.status === 403) {
+        toast.error("You can add only one product. Upgrade to Membership for unlimited product uploads.");
+      } else {
+        toast.error("Failed to add product. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }

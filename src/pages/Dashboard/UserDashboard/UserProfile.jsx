@@ -48,7 +48,7 @@ function UserProfile() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Status: Verified
+                  Verified
                 </span>
               </div>
             ) : (
