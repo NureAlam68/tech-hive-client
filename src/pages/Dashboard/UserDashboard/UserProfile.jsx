@@ -68,9 +68,7 @@ function UserProfile() {
       {/* Payment Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-            <h3 className="text-lg font-medium text-gray-800 mb-4">Complete Payment</h3>
-            <Elements stripe={stripePromise}>
+          <Elements stripe={stripePromise}>
               <CheckoutForm
                 onPaymentSuccess={() => {
                   setIsSubscribed(true);
@@ -79,7 +77,6 @@ function UserProfile() {
                 closeModal={() => setShowModal(false)}
               />
             </Elements>
-          </div>
         </div>
       )}
     </div>

@@ -4,6 +4,7 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { Tag, Gift, Clock3 } from 'lucide-react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router-dom';
 
 const CouponSlider = () => {
   const [coupons, setCoupons] = useState([]);
@@ -65,7 +66,7 @@ const CouponSlider = () => {
                   <div className="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
                     <div className="relative p-8">
                       <div className="absolute top-0 right-0 bg-gradient-to-l from-blue-600 to-purple-600 text-white px-6 py-2 rounded-bl-2xl font-semibold">
-                        {coupon.discount}% OFF
+                        {coupon.discount}$ OFF
                       </div>
                       
                       <div className="space-y-6">
@@ -91,10 +92,11 @@ const CouponSlider = () => {
                             })}
                           </p>
                         </div>
-
+                        <Link to="/dashboard/userProfile">
                         <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold transform hover:translate-y-[-2px] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                           Claim Offer
                         </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
