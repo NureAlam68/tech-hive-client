@@ -78,7 +78,6 @@ const ProductDetails = () => {
       toast.success("Your report has been submitted. Our team will review it.");
       setIsReported(true);
     } catch (error) {
-      // console.log(error);
       toast.error(error.response?.data.message);
     }
   };

@@ -40,17 +40,25 @@ export const router = createBrowserRouter([
       },
       {
         path: "product/:id",
-        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ProductDetails></ProductDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "products",
-        element: <ProductsPage></ProductsPage>
-      }
+        element: <ProductsPage></ProductsPage>,
+      },
     ],
   },
   {
     path: "dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       // user routes
       {
@@ -59,39 +67,62 @@ export const router = createBrowserRouter([
       },
       {
         path: "addProduct",
-        element: <AddProduct></AddProduct>
+        element: <AddProduct></AddProduct>,
       },
       {
         path: "myProducts",
-        element: <MyProducts></MyProducts>
+        element: <MyProducts></MyProducts>,
       },
       {
-        path: 'updateProduct/:id',
+        path: "updateProduct/:id",
         element: <UpdateProduct></UpdateProduct>,
-        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://tech-hive-server-one.vercel.app/products/${params.id}`
+          ),
       },
       // admin routes
       {
         path: "manageUsers",
-        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "statistics",
-        element: <AdminRoute><AdminStatistics></AdminStatistics></AdminRoute>
+        element: (
+          <AdminRoute>
+            <AdminStatistics></AdminStatistics>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageCoupons",
-        element: <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
+        element: (
+          <AdminRoute>
+            <ManageCoupons></ManageCoupons>
+          </AdminRoute>
+        ),
       },
       // moderator routes
       {
         path: "productReviewQueue",
-        element: <ModeratorRoute><ProductReviewQueue></ProductReviewQueue></ModeratorRoute>
+        element: (
+          <ModeratorRoute>
+            <ProductReviewQueue></ProductReviewQueue>
+          </ModeratorRoute>
+        ),
       },
       {
         path: "reportedContents",
-        element: <ModeratorRoute><ReportedProducts></ReportedProducts></ModeratorRoute>
-      }
+        element: (
+          <ModeratorRoute>
+            <ReportedProducts></ReportedProducts>
+          </ModeratorRoute>
+        ),
+      },
     ],
   },
 ]);

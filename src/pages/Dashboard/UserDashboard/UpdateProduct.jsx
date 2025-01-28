@@ -18,7 +18,6 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 const UpdateProduct = () => {
   const { user } = useAuth();
   const { _id, productName, productImage, description, externalLink, tags } = useLoaderData();
-  // console.log(productName, tags)
   
 //   const [tagsState, setTagsState] = useState([]);
   const [tagsState, setTagsState] = useState(
