@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import CheckoutForm from './CheckoutForm';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import useAuth from '../../../hooks/useAuth';
+import { useEffect, useState } from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "./CheckoutForm";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
@@ -22,8 +23,11 @@ function UserProfile() {
   }, [user, axiosSecure]);
 
   return (
-    <div className="min-h-screen bg-green-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>TechHive | My Profile</title>
+      </Helmet>
+      <div className="max-w-md mx-auto bg-blue-100 rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
           <div className="flex flex-col items-center">
             <img
@@ -31,7 +35,9 @@ function UserProfile() {
               src={user?.photoURL}
               alt={user?.displayName}
             />
-            <h2 className="mt-4 text-xl font-bold text-gray-900">{user?.displayName}</h2>
+            <h2 className="mt-4 text-xl font-bold text-gray-900">
+              {user?.displayName}
+            </h2>
             <p className="text-gray-500">{user?.email}</p>
 
             {isSubscribed ? (
@@ -69,14 +75,14 @@ function UserProfile() {
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
           <Elements stripe={stripePromise}>
-              <CheckoutForm
-                onPaymentSuccess={() => {
-                  setIsSubscribed(true);
-                  setShowModal(false);
-                }}
-                closeModal={() => setShowModal(false)}
-              />
-            </Elements>
+            <CheckoutForm
+              onPaymentSuccess={() => {
+                setIsSubscribed(true);
+                setShowModal(false);
+              }}
+              closeModal={() => setShowModal(false)}
+            />
+          </Elements>
         </div>
       )}
     </div>

@@ -53,7 +53,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-blue-950">
+    <div className="flex h-screen">
       <Toaster></Toaster>
       {/* Overlay for mobile */}
       {isSidebarOpen && (

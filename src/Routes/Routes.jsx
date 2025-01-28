@@ -16,6 +16,9 @@ import ProductsPage from "../pages/ProductsPage";
 import ReportedProducts from "../pages/Dashboard/ModeratorDashboard/ReportedProducts";
 import AdminStatistics from "../pages/Dashboard/AdminDashboard/AdminStatistics";
 import ManageCoupons from "../pages/Dashboard/AdminDashboard/ManageCoupons";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import ModeratorRoute from "./ModeratorRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +40,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "product/:id",
-        element: <ProductDetails></ProductDetails>,
+        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
       },
       {
         path: "products",
@@ -47,7 +50,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       // user routes
       {
@@ -70,24 +73,24 @@ export const router = createBrowserRouter([
       // admin routes
       {
         path: "manageUsers",
-        element: <ManageUsers></ManageUsers>
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
       },
       {
         path: "statistics",
-        element: <AdminStatistics></AdminStatistics>
+        element: <AdminRoute><AdminStatistics></AdminStatistics></AdminRoute>
       },
       {
         path: "manageCoupons",
-        element: <ManageCoupons></ManageCoupons>
+        element: <AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
       },
       // moderator routes
       {
         path: "productReviewQueue",
-        element: <ProductReviewQueue></ProductReviewQueue>
+        element: <ModeratorRoute><ProductReviewQueue></ProductReviewQueue></ModeratorRoute>
       },
       {
         path: "reportedContents",
-        element: <ReportedProducts></ReportedProducts>
+        element: <ModeratorRoute><ReportedProducts></ReportedProducts></ModeratorRoute>
       }
     ],
   },

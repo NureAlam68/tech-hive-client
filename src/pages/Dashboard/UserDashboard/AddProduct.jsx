@@ -4,8 +4,9 @@ import { WithContext as ReactTags } from "react-tag-input";
 // import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const KeyCodes = {
   comma: 188,
@@ -16,10 +17,10 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 export default function AddProduct() {
   const { user } = useAuth();
-//   const navigate = useNavigate();
+  //   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -49,30 +50,33 @@ export default function AddProduct() {
       const formData = {
         ...data,
         tags: tags.map((tag) => tag.text),
-          name: user.displayName,
-          email: user.email,
-          image: user.photoURL,
-          status: 'Pending',
-          upvote: 0,
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+        status: "Pending",
+        upvote: 0,
         createdAt: new Date().toISOString(),
       };
 
-      const productRes = await axiosPublic.post("/products", formData);
+      const productRes = await axiosSecure.post("/products", formData);
       if (!productRes.data.insertedId) {
         toast.error("Product not added. Please try again.");
         return;
       }
-        reset();
-        setTags([]);
-        // navigate("/my-products");
-        Swal.fire({
-          title: `${data.productName} is added to the product.`,
-          icon: "success",
-          draggable: true,
-        });
+      reset();
+      setTags([]);
+      // navigate("/my-products");
+      Swal.fire({
+        title: `${data.productName} is added to the product.`,
+        icon: "success",
+        draggable: true,
+      });
     } catch (error) {
-      if (error.response?.status === 403) {
-        toast.error("You can add only one product. Upgrade to Membership for unlimited product uploads.");
+      if (error.response?.status === 402) {
+        toast.error(
+          "You can add only one product. Upgrade to Membership for unlimited product uploads."
+        );
+        reset();
       } else {
         toast.error("Failed to add product. Please try again.");
       }
@@ -82,8 +86,11 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="min-h-screen bg-green-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>TechHive | Add Product</title>
+      </Helmet>
+      <div className="max-w-2xl mx-auto bg-white border rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             Add New Product
@@ -195,7 +202,8 @@ export default function AddProduct() {
                 classNames={{
                   tags: "react-tags-wrapper",
                   tagInput: "react-tags-input",
-                  tagInputField: "block w-full p-2 border border-blue-100 rounded-md",
+                  tagInputField:
+                    "block w-full p-2 border border-blue-100 rounded-md",
                   tag: "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 mr-2 mb-2",
                   remove: "ml-2 text-indigo-400 hover:text-indigo-500",
                 }}

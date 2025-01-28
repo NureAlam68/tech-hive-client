@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AdminStatistics = () => {
   const [statistics, setStatistics] = useState(null);
@@ -31,6 +32,9 @@ const AdminStatistics = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-100 via-white to-gray-200">
+      <Helmet>
+        <title>TechHive | Statistics</title>
+      </Helmet>
       <div className="w-full max-w-2xl p-8 bg-white shadow-2xl rounded-lg">
         <h2 className="text-2xl font-bold text-center mb-8 text-gray-700">
           Admin Dashboard Statistics

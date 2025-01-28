@@ -1,15 +1,17 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useUpVote = () => {
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const queryClient = useQueryClient(); 
 
   const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ["featured-products"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/featured-products");
+      const res = await axiosPublic.get("/featured-products");
       return res.data;
     },
   });

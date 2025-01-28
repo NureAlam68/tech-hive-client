@@ -4,17 +4,19 @@ import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import {  useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const TrendingProducts = () => {
   const { user } = useAuth(); 
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const queryClient = useQueryClient();
 
   const { data: products = [], refetch } = useQuery({
     queryKey: ["trending-products"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/trending-products");
+      const res = await axiosPublic.get("/trending-products");
       return res.data;
     },
   });

@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { WithContext as ReactTags } from "react-tag-input";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const KeyCodes = {
   comma: 188,
@@ -17,7 +18,7 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 const UpdateProduct = () => {
   const { user } = useAuth();
   const { _id, productName, productImage, description, externalLink, tags } = useLoaderData();
-  console.log(productName, tags)
+  // console.log(productName, tags)
   
 //   const [tagsState, setTagsState] = useState([]);
   const [tagsState, setTagsState] = useState(
@@ -25,7 +26,7 @@ const UpdateProduct = () => {
 );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, formState: { errors } } = useForm();
   
   const handleDelete = (i) => {
@@ -54,7 +55,7 @@ const UpdateProduct = () => {
         tags: tagsState.map((tag) => tag.text),
       };
 
-      const productRes = await axiosPublic.patch(`/products/${_id}`, formData);
+      const productRes = await axiosSecure.patch(`/products/${_id}`, formData);
       if (productRes.data.modifiedCount > 0) {
         // reset();
         setTagsState([]);
@@ -73,8 +74,11 @@ const UpdateProduct = () => {
   };
 
   return (
-    <div className="min-h-screen bg-green-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>TechHive | Update Product</title>
+      </Helmet>
+      <div className="max-w-2xl mx-auto bg-white border rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Product</h2>
 

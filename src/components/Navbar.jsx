@@ -4,9 +4,13 @@ import { HiChip } from 'react-icons/hi';
 import { BiNetworkChart } from 'react-icons/bi';
 import useAuth from '../hooks/useAuth';
 import "./NavBar.css"
+import useAdmin from '../hooks/useAdmin';
+import useModerator from '../hooks/useModerator';
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
+  const [isModerator] = useModerator();
 
   return (
     <>
@@ -81,11 +85,33 @@ const Navbar = () => {
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-base-100 rounded-box w-52">
                 <li className="menu-title px-4 py-2 text-primary font-semibold">{user.displayName}</li>
                 <div className="divider my-0"></div>
-                <li>
-                  <Link to="/dashboard" className="text-base">
+                {
+                  user && !isAdmin && !isModerator && (
+                    <li>
+                  <Link to="/dashboard/userProfile" className="text-base">
                     Dashboard
                   </Link>
                 </li>
+                  )
+                }
+                {
+                  user && isAdmin && (
+                    <li>
+                  <Link to="/dashboard/statistics" className="text-base">
+                    Dashboard
+                  </Link>
+                </li>
+                  )
+                }
+                {
+                  user && isModerator && (
+                    <li>
+                  <Link to="/dashboard/productReviewQueue" className="text-base">
+                    Dashboard
+                  </Link>
+                </li>
+                  )
+                }
                 <li>
                   <Link to="/">
                   <button onClick={logOut} className="text-base text-error">

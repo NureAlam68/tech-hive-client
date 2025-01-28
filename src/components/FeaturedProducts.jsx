@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
 
   return (
     <section className="mt-10 md:mt-[60px] lg:mt-[80px] 2xl:mt-[100px] container mx-auto">
-      <h2 className="text-3xl font-bold text-center">Featured Products</h2>
+      <h2 className="text-3xl lg:text-4xl font-bold text-center">Featured Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 mt-6 md:mt-8 lg:mt-10">
         {products.map((product) => (
           <div key={product._id} className="border p-4 rounded-lg shadow-md">

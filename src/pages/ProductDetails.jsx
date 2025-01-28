@@ -5,6 +5,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { FaExternalLinkAlt, FaThumbsUp } from "react-icons/fa";
 import { MdReport, MdStar, MdStarBorder } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -78,7 +79,7 @@ const ProductDetails = () => {
       setIsReported(true);
     } catch (error) {
       // console.log(error);
-      toast.error( error.response?.data.message);
+      toast.error(error.response?.data.message);
     }
   };
 
@@ -132,6 +133,9 @@ const ProductDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Helmet>
+        <title>TechHive | Product Details</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {/* Product Details Card */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">

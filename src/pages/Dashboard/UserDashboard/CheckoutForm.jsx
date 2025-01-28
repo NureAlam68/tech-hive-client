@@ -3,8 +3,8 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import { CreditCard, Gift, Lock } from "lucide-react";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const cardStyle = {
   style: {
@@ -30,14 +30,14 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState(9.99);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
   useEffect(() => {
-    axiosPublic.post("/create-payment-intent", { amount }).then((res) => {
+    axiosSecure.post("/create-payment-intent", { amount }).then((res) => {
       setClientSecret(res.data.clientSecret);
     });
-  }, [amount, axiosPublic]);
+  }, [amount, axiosSecure]);
 
   const applyCoupon = async () => {
     if (!couponCode.trim()) {
@@ -46,7 +46,7 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
     }
 
     try {
-      const res = await axiosPublic.post("/apply-coupon", { couponCode });
+      const res = await axiosSecure.post("/apply-coupon", { couponCode });
       if (res.data.valid) {
         setDiscount(res.data.discount);
         setAmount(9.99 - res.data.discount);
@@ -96,7 +96,7 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
       setError(error.message);
       setLoading(false);
     } else if (paymentIntent.status === "succeeded") {
-      await axiosPublic.post("/users/subscribe", { 
+      await axiosSecure.post("/users/subscribe", { 
         email: user?.email, 
         transactionId: paymentIntent.id 
       });

@@ -11,6 +11,7 @@ const Register = () => {
   const { signInWithGoogle, setUser, createUser, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500
           });
-          navigate("/");
+          navigate(from, {replace: true});
         }
       });
     } catch (err) {
@@ -81,7 +82,7 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(from, {replace: true});
       }
     } catch (err) {
       toast.error(err?.message);

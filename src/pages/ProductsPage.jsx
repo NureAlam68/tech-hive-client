@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ProductsPage = () => {
   const { user } = useAuth();
@@ -20,7 +21,11 @@ const ProductsPage = () => {
     const fetchProducts = async () => {
       try {
         const { data } = await axiosPublic.get(`/accepted-products`, {
-          params: { search: searchTerm, page: currentPage, limit: productsPerPage },
+          params: {
+            search: searchTerm,
+            page: currentPage,
+            limit: productsPerPage,
+          },
         });
         setProducts(data.products);
       } catch (error) {
@@ -37,7 +42,9 @@ const ProductsPage = () => {
     }
 
     try {
-      const response = await axiosSecure.patch(`/upvote/${id}`, { email: user?.email });
+      const response = await axiosSecure.patch(`/upvote/${id}`, {
+        email: user?.email,
+      });
       if (response.data.modifiedCount) {
         toast.success("Upvoted successfully!");
         setProducts((prev) =>
@@ -55,6 +62,9 @@ const ProductsPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <Helmet>
+        <title>TechHive | Products</title>
+      </Helmet>
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -62,7 +72,8 @@ const ProductsPage = () => {
             Discover Amazing Products
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our curated collection of innovative products and vote for your favorites
+            Explore our curated collection of innovative products and vote for
+            your favorites
           </p>
         </div>
 
@@ -94,7 +105,7 @@ const ProductsPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              
+
               <div className="p-6">
                 <h3
                   className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 cursor-pointer transition-colors duration-200"
@@ -102,7 +113,7 @@ const ProductsPage = () => {
                 >
                   {product.productName}
                 </h3>
-                
+
                 <div className="flex flex-wrap gap-2 mt-4">
                   {product.tags.map((tag, index) => (
                     <span
@@ -146,11 +157,11 @@ const ProductsPage = () => {
             <ChevronLeft className="w-5 h-5" />
             <span>Previous</span>
           </button>
-          
+
           <span className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md font-medium">
             Page {currentPage}
           </span>
-          
+
           <button
             className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 rounded-full shadow-md hover:shadow-lg transition-all duration-200"
             onClick={() => setCurrentPage((prev) => prev + 1)}

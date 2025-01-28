@@ -2,6 +2,7 @@ import { FaUserShield, FaUserTie } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -66,6 +67,9 @@ const ManageUsers = () => {
 
   return (
     <div className="container mx-auto p-6">
+      <Helmet>
+        <title>TechHive | Manage Users</title>
+      </Helmet>
       <div className="bg-white p-[50px] mt-[68px] min-h-screen">
         <div className="flex justify-between items-center">
           <h2 className="font-cinzel font-bold lg:text-[24px] xl:text-[32px]">

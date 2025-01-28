@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const ManageCoupons = () => {
   const [coupons, setCoupons] = useState([]);
@@ -103,6 +104,9 @@ const ManageCoupons = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-gray-50 rounded-lg shadow-lg">
+      <Helmet>
+        <title>TechHive | Manage Coupons</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Manage Coupons
       </h1>
