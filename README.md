@@ -71,24 +71,12 @@ cd techhive
 npm install
 ```
 
-### 3️⃣ Set Up Environment Variables
-Create a `.env` file in the root directory and add the necessary environment variables:
-```env
-VITE_apiKey=AIzaSyABnjh4gxrZfOrH0y8BYDfM5qF7GzQ_Iaw
-VITE_authDomain=tech-hive-5e087.firebaseapp.com
-VITE_projectId=tech-hive-5e087
-VITE_storageBucket=tech-hive-5e087.firebasestorage.app
-VITE_messagingSenderId=562951311486
-VITE_appId=1:562951311486:web:63a19f0662cd31a4c7082f
-VITE_Payment_Gateway_PK=pk_test_51QhYMDDSz2EqzXDZ7eLcPUNmXSxty1zUpPjQkJpoUegFsd0Tl0mi9IeTSOg8zGE8f9usKAJk2ZENlxxtlVQAxeus00AbuwPro6
-```
-
-### 4️⃣ Start the Development Server
+### 3️⃣ Start the Development Server
 ```sh
 npm run dev
 ```
 
-### 5️⃣ Build for Production
+### 4️⃣ Build for Production
 ```sh
 npm run build
 ```
