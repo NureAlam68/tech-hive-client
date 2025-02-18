@@ -19,6 +19,7 @@ import ManageCoupons from "../pages/Dashboard/AdminDashboard/ManageCoupons";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ModeratorRoute from "./ModeratorRoute";
+import Contact from "../pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
         path: "products",
         element: <ProductsPage></ProductsPage>,
       },
+      {
+        path: "contact",
+        element: <Contact></Contact>
+      }
     ],
   },
   {

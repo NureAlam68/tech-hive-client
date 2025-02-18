@@ -11,7 +11,8 @@ import {
   Network,
   UserCircle,
   LogOut,
-  LayoutDashboard
+  LayoutDashboard,
+  Mail
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import useAdmin from '../hooks/useAdmin';
@@ -63,6 +64,7 @@ const Navbar = () => {
   const navLinks = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/products', label: 'Products', icon: Package },
+    { path: '/contact', label: 'Contact', icon: Mail },
   ];
 
   const isActivePath = (path) => {
@@ -96,7 +98,7 @@ const Navbar = () => {
             </div>
             <div className='flex gap-20'>
               {/* Desktop Navigation */}
-              <div className="hidden sm:ml-8 sm:flex sm:space-x-4">
+              <div className="hidden lg:ml-8 lg:flex sm:space-x-4">
                 {navLinks.map(({ path, label, icon: Icon }) => (
                   <NavLink
                     key={path}
@@ -131,7 +133,7 @@ const Navbar = () => {
                 <div className="flex items-center space-x-3">
                   <Link
                     to="/login"
-                    className="px-4 py-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-md transition-colors duration-200"
+                    className="px-4 py-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-md transition-colors duration-200 hidden xl:flex"
                   >
                     Login
                   </Link>
@@ -209,7 +211,7 @@ const Navbar = () => {
               )}
 
               {/* Mobile menu button */}
-              <div className="flex items-center sm:hidden mobile-menu">
+              <div className="flex items-center lg:hidden mobile-menu">
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
@@ -223,7 +225,7 @@ const Navbar = () => {
 
           {/* Mobile menu */}
           {isMenuOpen && (
-            <div className="sm:hidden">
+            <div className="lg:hidden">
               <div className="pt-2 pb-3 space-y-1">
                 {navLinks.map(({ path, label, icon: Icon }) => (
                   <NavLink
