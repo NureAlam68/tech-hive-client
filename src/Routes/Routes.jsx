@@ -20,6 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ModeratorRoute from "./ModeratorRoute";
 import Contact from "../pages/Contact";
+import AboutUs from "../pages/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact></Contact>
+      },
+      {
+        path: "about",
+        element: <AboutUs></AboutUs>
       }
     ],
   },

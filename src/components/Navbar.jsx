@@ -12,7 +12,8 @@ import {
   UserCircle,
   LogOut,
   LayoutDashboard,
-  Mail
+  Mail,
+  User
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 import useAdmin from '../hooks/useAdmin';
@@ -64,6 +65,7 @@ const Navbar = () => {
   const navLinks = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/products', label: 'Products', icon: Package },
+    { path: '/about', label: 'About Us', icon: User },
     { path: '/contact', label: 'Contact', icon: Mail },
   ];
 
@@ -82,12 +84,12 @@ const Navbar = () => {
                 <Link to="/" className="flex items-center space-x-2">
                   <div className="relative">
                     <CircuitBoard className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
-                    <Network className="h-4 w-4 text-teal-500 absolute -bottom-1 -right-1" />
+                    <Network className="h-4 w-4 text-gray-600 dark:text-gray-300 absolute -bottom-1 -right-1" />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-xl font-bold">
                       <span className="text-indigo-600 dark:text-indigo-400">Tech</span>
-                      <span className="text-teal-500">Hive</span>
+                      <span className="text-gray-600 dark:text-gray-300">Hive</span>
                     </span>
                     <span className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
                       Innovation Hub
@@ -96,7 +98,7 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <div className='flex gap-20'>
+            <div className='flex'>
               {/* Desktop Navigation */}
               <div className="hidden lg:ml-8 lg:flex sm:space-x-4">
                 {navLinks.map(({ path, label, icon: Icon }) => (
