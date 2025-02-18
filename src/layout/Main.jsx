@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 
 const Main = () => {
     return (
-        <div className="max-w-[1920px] mx-auto font-inconsolata">
+        <div className="max-w-[1920px] mx-auto font-inconsolata dark:bg-slate-950">
             <Toaster></Toaster>
             <Navbar></Navbar>
             <Outlet></Outlet>
