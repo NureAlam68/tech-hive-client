@@ -84,7 +84,7 @@ const ProductsPage = () => {
             <input
               type="text"
               placeholder="Search by tag..."
-              className="w-full pl-14 pr-4 py-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all duration-200 text-lg"
+              className="w-full pl-14 pr-4 py-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all duration-200 text-lg dark:text-gray-200"
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>

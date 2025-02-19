@@ -44,7 +44,7 @@ const TrendingProducts = () => {
       <h2 className="text-3xl lg:text-4xl font-bold text-center dark:text-gray-200">Trending Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-6 lg:px-8 mt-6 md:mt-8 lg:mt-10">
         {products.map((product) => (
-          <div key={product._id} className="border p-4 rounded-lg shadow-md dark:bg-gray-900 dark:border dark:border-gray-600">
+          <div key={product._id} className="border p-4 rounded-lg shadow-md dark:bg-gray-900 dark:border dark:border-gray-600 overflow-hidden transform hover:scale-105 transition-transform duration-300">
             <img
               src={product.productImage}
               alt={product.productName}

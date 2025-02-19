@@ -90,16 +90,16 @@ export default function AddProduct() {
       <Helmet>
         <title>TechHive | Add Product</title>
       </Helmet>
-      <div className="max-w-2xl mx-auto bg-white border rounded-xl shadow-md overflow-hidden">
+      <div className="max-w-[1600px] mx-auto bg-white dark:bg-gray-800 border dark:border-gray-600 rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 dark:text-gray-200">
             Add New Product
           </h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Product Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Product Name *
               </label>
               <input
@@ -119,7 +119,7 @@ export default function AddProduct() {
 
             {/* Product Image */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Product Image URL *
               </label>
               <input
@@ -139,7 +139,7 @@ export default function AddProduct() {
 
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Description *
               </label>
               <textarea
@@ -159,7 +159,7 @@ export default function AddProduct() {
 
             {/* Owner Info */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium text-gray-900">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-200">
                 Product Owner Information
               </h3>
               <div className="flex items-center space-x-4">
@@ -173,13 +173,13 @@ export default function AddProduct() {
                     type="text"
                     value={user?.displayName}
                     disabled
-                    className="block w-full rounded-md border-gray-300 bg-gray-50"
+                    className="block w-full rounded-md dark:text-gray-300"
                   />
                   <input
                     type="email"
                     value={user?.email}
                     disabled
-                    className="mt-2 block w-full rounded-md border-gray-300 bg-gray-50"
+                    className="mt-2 block w-full rounded-md dark:text-gray-300"
                   />
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function AddProduct() {
 
             {/* Tags */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                 Tags
               </label>
               <ReactTags
@@ -212,7 +212,7 @@ export default function AddProduct() {
 
             {/* External Links */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 External Link
               </label>
               <input

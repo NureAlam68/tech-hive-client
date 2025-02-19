@@ -27,7 +27,7 @@ function UserProfile() {
       <Helmet>
         <title>TechHive | My Profile</title>
       </Helmet>
-      <div className="max-w-md mx-auto bg-blue-100 rounded-xl shadow-md overflow-hidden">
+      <div className="max-w-[1600px] mx-auto bg-gray-100 rounded-xl shadow-md overflow-hidden dark:bg-gray-900">
         <div className="p-8">
           <div className="flex flex-col items-center">
             <img
@@ -35,10 +35,10 @@ function UserProfile() {
               src={user?.photoURL}
               alt={user?.displayName}
             />
-            <h2 className="mt-4 text-xl font-bold text-gray-900">
+            <h2 className="mt-4 text-xl font-bold text-gray-900 dark:text-gray-200">
               {user?.displayName}
             </h2>
-            <p className="text-gray-500">{user?.email}</p>
+            <p className="text-gray-500 dark:text-gray-400">{user?.email}</p>
 
             {isSubscribed ? (
               <div className="mt-6">

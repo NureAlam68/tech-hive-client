@@ -53,38 +53,38 @@ const MyProducts = () => {
       <Helmet>
         <title>TechHive | My Products</title>
       </Helmet>
-      <div className="max-w-5xl mx-auto bg-white border rounded-xl shadow-md overflow-hidden">
+      <div className="max-w-[1600px] mx-auto bg-white dark:bg-gray-900 border dark:border-gray-700 rounded-xl shadow-md overflow-hidden">
         <div className="p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">My Products</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 dark:text-gray-200">My Products</h2>
           {loading ? (
             <p>Loading products...</p>
           ) : products.length === 0 ? (
-            <p className="text-gray-500">No products found.</p>
+            <p className="text-gray-500 dark:text-gray-400">No products found.</p>
           ) : (
             <table className="min-w-full table-auto border-collapse border border-gray-300">
               <thead>
-                <tr className="bg-gray-100">
-                  <th className="border border-gray-300 px-4 py-2 text-left">
+                <tr className="bg-gray-100 dark:bg-gray-700">
+                  <th className="border border-gray-300 px-4 py-2 text-left dark:text-gray-200">
                     Product Name
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left">
+                  <th className="border border-gray-300 px-4 py-2 text-left dark:text-gray-200">
                     Votes
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left">
+                  <th className="border border-gray-300 px-4 py-2 text-left dark:text-gray-200">
                     Status
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left">
+                  <th className="border border-gray-300 px-4 py-2 text-left dark:text-gray-200">
                     Actions
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {products.map((product) => (
-                  <tr key={product._id} className="hover:bg-gray-50">
-                    <td className="border border-gray-300 px-4 py-2">
+                  <tr key={product._id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                    <td className="border border-gray-300 px-4 py-2 dark:text-gray-300">
                       {product.productName}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border border-gray-300 px-4 py-2 dark:text-gray-300">
                       {product.upvote}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
