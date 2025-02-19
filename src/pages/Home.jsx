@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import FeaturedProducts from "../components/FeaturedProducts";
 import TrendingProducts from "../components/TrendingProducts";
 import CouponSlider from "../components/CouponSlider";
+import HowWorks from "../components/HowWorks";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
             <CouponSlider></CouponSlider>
+            <HowWorks></HowWorks>
         </div>
     );
 };
