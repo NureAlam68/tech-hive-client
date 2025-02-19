@@ -48,7 +48,7 @@ const TechNews = () => {
                             link: "https://www.wired.com/category/security/"
                         }
                     ].map((news, index) => (
-                        <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 dark:bg-gray-800">
+                        <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 dark:bg-gray-900">
                             <img
                                 src={news.image}
                                 alt={news.title}
