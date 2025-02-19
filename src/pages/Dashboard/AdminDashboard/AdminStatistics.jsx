@@ -31,12 +31,12 @@ const AdminStatistics = () => {
   const COLORS = ["#4CAF50", "#FF9800", "#F44336", "#2196F3"]; 
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-100 via-white to-gray-200">
+    <div className="flex justify-center items-center min-h-screen">
       <Helmet>
         <title>TechHive | Statistics</title>
       </Helmet>
-      <div className="w-full max-w-2xl p-8 bg-white shadow-2xl rounded-lg">
-        <h2 className="text-2xl font-bold text-center mb-8 text-gray-700">
+      <div className="w-full max-w-[1600px] p-8 bg-white shadow-2xl rounded-lg dark:bg-gray-900">
+        <h2 className="text-2xl font-bold text-center mb-8 text-gray-700 dark:text-gray-200">
           Admin Dashboard Statistics
         </h2>
         {statistics ? (
@@ -69,11 +69,11 @@ const AdminStatistics = () => {
                 verticalAlign="bottom"
                 height={36}
                 formatter={(value) => (
-                  <span className="text-gray-700 font-medium">{value}</span>
+                  <span className="text-gray-700 font-medium dark:text-gray-300">{value}</span>
                 )}
               />
             </PieChart>
-            <p className="text-sm text-gray-500 text-center mt-4">
+            <p className="text-sm text-gray-500 text-center mt-4 dark:text-gray-300">
               This pie chart shows the overview of the platform&apos;s key metrics, including
               products, reviews, and users.
             </p>

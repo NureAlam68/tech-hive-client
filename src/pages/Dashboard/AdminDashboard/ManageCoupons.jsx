@@ -103,20 +103,20 @@ const ManageCoupons = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-gray-50 rounded-lg shadow-lg">
+    <div className="max-w-[1600px] mx-auto p-6 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-lg">
       <Helmet>
         <title>TechHive | Manage Coupons</title>
       </Helmet>
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center dark:text-gray-200">
         Manage Coupons
       </h1>
       <form
         onSubmit={handleAddCoupon}
-        className="bg-white p-6 rounded-lg shadow-md mb-8 space-y-6"
+        className="bg-white p-6 dark:bg-gray-800 rounded-lg shadow-md mb-8 space-y-6"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Coupon Code
             </label>
             <input
@@ -129,7 +129,7 @@ const ManageCoupons = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Expiry Date
             </label>
             <input
@@ -143,7 +143,7 @@ const ManageCoupons = () => {
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Description
           </label>
           <textarea
@@ -156,7 +156,7 @@ const ManageCoupons = () => {
           ></textarea>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Discount Amount
           </label>
           <input
@@ -180,19 +180,19 @@ const ManageCoupons = () => {
         {coupons.map((coupon) => (
           <div
             key={coupon._id}
-            className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition flex flex-col justify-between"
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition flex flex-col justify-between"
           >
             <div>
-              <h2 className="text-xl font-bold text-gray-800 mb-2">
+              <h2 className="text-xl font-bold text-gray-800 mb-2 dark:text-gray-200">
                 {coupon.code}
               </h2>
-              <p className="text-sm text-gray-600 mb-1">
+              <p className="text-sm text-gray-600 mb-1 dark:text-gray-400">
                 <span className="font-medium">Expiry:</span> {coupon.expiryDate}
               </p>
-              <p className="text-sm text-gray-600 mb-1">
+              <p className="text-sm text-gray-600 mb-1 dark:text-gray-400">
                 {coupon.description}
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 <span className="font-medium">Discount:</span> ${coupon.discount}
               </p>
             </div>

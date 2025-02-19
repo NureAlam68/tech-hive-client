@@ -70,9 +70,9 @@ const ManageUsers = () => {
       <Helmet>
         <title>TechHive | Manage Users</title>
       </Helmet>
-      <div className="bg-white p-[50px] mt-[68px] min-h-screen">
+      <div className="bg-gray-50 dark:bg-gray-900 p-[50px] mt-[68px] min-h-screen">
         <div className="flex justify-between items-center">
-          <h2 className="font-cinzel font-bold lg:text-[24px] xl:text-[32px]">
+          <h2 className="font-cinzel font-bold lg:text-[24px] xl:text-[32px] dark:text-gray-200">
             Total Users: {users.length}
           </h2>
         </div>
@@ -88,7 +88,7 @@ const ManageUsers = () => {
                 <th>Make Moderator</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="dark:text-gray-300">
               {users.map((user, idx) => (
                 <tr key={user._id}>
                   <th>{idx + 1}</th>
