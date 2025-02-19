@@ -42,9 +42,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "product/:id",
-        element: (
-            <ProductDetails></ProductDetails>
-        ),
+        element: <ProductDetails></ProductDetails>,
       },
       {
         path: "products",
@@ -52,12 +50,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "contact",
-        element: <Contact></Contact>
+        element: <Contact></Contact>,
       },
       {
         path: "about",
-        element: <AboutUs></AboutUs>
-      }
+        element: <AboutUs></AboutUs>,
+      },
     ],
   },
   {
@@ -85,7 +83,9 @@ export const router = createBrowserRouter([
         path: "updateProduct/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://tech-hive-server-one.vercel.app/products/${params.id}`
+          ),
       },
       // admin routes
       {
