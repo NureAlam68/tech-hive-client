@@ -131,13 +131,13 @@ const ProductDetails = () => {
   const hasVoted = product.votedUsers?.includes(user?.email);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
       <Helmet>
         <title>TechHive | Product Details</title>
       </Helmet>
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {/* Product Details Card */}
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="bg-white dark:bg-blue-950 rounded-2xl shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Product Image */}
             <div className="relative h-[400px] lg:h-[500px]">
@@ -152,7 +152,7 @@ const ProductDetails = () => {
             {/* Product Info */}
             <div className="p-8">
               <div className="flex justify-between items-start">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                <h1 className="text-4xl font-bold text-gray-900 mb-4 dark:text-gray-200">
                   {product.productName}
                 </h1>
                 {product.externalLink && (
@@ -175,14 +175,14 @@ const ProductDetails = () => {
                   className="w-10 h-10 rounded-full object-cover"
                 />
                 <div>
-                  <p className="font-medium text-gray-900">{product.name}</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="font-medium text-gray-900 dark:text-gray-300">{product.name}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     {new Date(product.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               </div>
 
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 mb-6 dark:text-gray-300">
                 {product.description}
               </p>
 
@@ -234,9 +234,9 @@ const ProductDetails = () => {
 
         {/* Reviews Section */}
         <div className="mt-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 dark:text-gray-200">
             Customer Reviews
-            <span className="text-lg font-normal text-gray-500 ml-2">
+            <span className="text-lg font-normal text-gray-500 ml-2 dark:text-gray-200">
               ({reviews.length})
             </span>
           </h2>
@@ -244,8 +244,8 @@ const ProductDetails = () => {
           {/* Reviews Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {reviews.length === 0 ? (
-              <div className="col-span-2 text-center py-12 bg-white rounded-xl">
-                <p className="text-gray-500">
+              <div className="col-span-2 text-center py-12 bg-white rounded-xl dark:bg-blue-950">
+                <p className="text-gray-500 dark:text-gray-400">
                   No reviews yet. Be the first to review!
                 </p>
               </div>
@@ -253,7 +253,7 @@ const ProductDetails = () => {
               reviews.map((review, index) => (
                 <div
                   key={index}
-                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow dark:bg-blue-950"
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <img
@@ -262,7 +262,7 @@ const ProductDetails = () => {
                       className="w-12 h-12 rounded-full object-cover ring-2 ring-blue-100"
                     />
                     <div>
-                      <h4 className="font-semibold text-gray-900">
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-200">
                         {review.reviewerName}
                       </h4>
                       <div className="flex gap-1 text-yellow-400">
@@ -276,20 +276,20 @@ const ProductDetails = () => {
                           </span>
                         ))}
                       </div>
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm text-gray-500 mt-1 dark:text-gray-400">
                         {new Date(review.createdAt).toLocaleDateString()}
                       </p>
                     </div>
                   </div>
-                  <p className="text-gray-600">{review.reviewDescription}</p>
+                  <p className="text-gray-600 dark:text-gray-300">{review.reviewDescription}</p>
                 </div>
               ))
             )}
           </div>
 
           {/* Post Review Form */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+          <div className="bg-white dark:bg-blue-950 rounded-2xl shadow-lg p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 dark:text-gray-200">
               Write a Review
             </h3>
             <div className="space-y-6">
@@ -303,16 +303,16 @@ const ProductDetails = () => {
                       className="w-12 h-12 rounded-full object-cover ring-2 ring-blue-100"
                     />
                     <div>
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold text-gray-900 dark:text-gray-200">
                         {user.displayName}
                       </p>
-                      <p className="text-sm text-gray-500">Verified Customer</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Verified Customer</p>
                     </div>
                   </div>
 
                   {/* Rating */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                       Your Rating
                     </label>
                     <div className="flex gap-1">
@@ -343,7 +343,7 @@ const ProductDetails = () => {
 
                   {/* Review Text */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">
                       Your Review
                     </label>
                     <textarea
@@ -368,7 +368,7 @@ const ProductDetails = () => {
                 </>
               ) : (
                 <div className="text-center py-6">
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600 mb-4 dark:text-gray-400">
                     Please login to write a review
                   </p>
                   <button
