@@ -47,7 +47,7 @@ const CouponSlider = () => {
   };
 
   return (
-    <section className="py-16 px-4 mt-10 md:mt-[60px] lg:mt-[80px] 2xl:mt-[100px]">
+    <section className="py-16 mt-10 md:mt-[60px] lg:mt-[80px] 2xl:mt-[100px]">
       <div className="max-w-[1600px] mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -58,7 +58,7 @@ const CouponSlider = () => {
           <p className="text-gray-600 dark:text-gray-300">Don&apos;t miss out on these amazing deals!</p>
         </div>
 
-        <div className="relative px-8">
+        <div className="relative px-4 md:px-6 lg:px-8">
           {coupons.length > 0 ? (
             <Slider {...sliderSettings}>
               {coupons.map((coupon) => (

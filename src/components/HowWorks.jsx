@@ -3,7 +3,7 @@ import { Search, Heart, Upload, ThumbsUp } from 'lucide-react';
 const HowWorks = () => {
     return (
         <section className="py-20 bg-white dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-gray-200">
               How TechHive Works

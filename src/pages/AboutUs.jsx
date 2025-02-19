@@ -12,7 +12,7 @@ function AboutUs() {
       }}
       >
         <div className="absolute inset-0 bg-black opacity-50 pattern-grid-lg"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-200 tracking-tight mb-4">
               Welcome to <span className="text-blue-600">TechHive</span>
@@ -25,7 +25,7 @@ function AboutUs() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Mission Section */}
         <div className="bg-white rounded-2xl shadow-sm p-8 mb-12 dark:bg-gray-900 border dark:border dark:border-gray-600">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">Our Mission</h2>

@@ -52,8 +52,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-slate-950 px-4">
-      <div className="bg-white dark:bg-gray-900 rounded-lg p-8 max-w-2xl w-full border dark:border-gray-600">
+    <div className="min-h-screen flex items-center justify-center dark:bg-slate-950 px-4 md:px-6 lg:px-8 max-w-[1600px] mx-auto">
+      <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-8 border dark:border-gray-600 w-full">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white text-center">Contact Us</h1>
         <p className="text-gray-600 dark:text-gray-300 text-center mb-6">We&apos;d love to hear from you!</p>
 

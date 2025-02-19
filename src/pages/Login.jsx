@@ -88,17 +88,17 @@ const Login = () => {
           <h2 className="text-sm font-semibold text-center text-blue-500">
             Welcome back!
           </h2>
-          <h1 className="text-2xl font-bold text-center text-gray-800">
+          <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-gray-200">
             Member Login
           </h1>
-          <p className="text-sm text-center text-gray-500 mb-6">
+          <p className="text-sm text-center text-gray-500 mb-6 dark:text-gray-400">
             Access to all features. No credit card required.
           </p>
 
           <button
             onClick={handleGoogleLogIn}
             type="button"
-            className="flex items-center justify-center w-full px-4 py-2 mb-4 font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100"
+            className="flex items-center justify-center w-full px-4 py-2 mb-4 font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
           >
             <img
               src="https://www.svgrepo.com/show/355037/google.svg"
@@ -109,7 +109,7 @@ const Login = () => {
           </button>
 
           <div className="relative flex items-center justify-center mb-4">
-            <span className="absolute px-2 text-sm text-gray-500 bg-white">
+            <span className="absolute px-2 text-sm text-gray-500 bg-white dark:bg-gray-700 dark:text-gray-200">
               Or continue with
             </span>
             <div className="w-full border-t border-gray-300"></div>
@@ -119,7 +119,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="usernameOrEmail"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200"
               >
                 Email address *
               </label>
@@ -135,7 +135,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200"
               >
                 Password *
               </label>
@@ -158,12 +158,12 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full px-4 py-2 mt-4 font-medium text-white bg-primary rounded-md hover:bg-accent"
+            className="w-full px-4 py-2 mt-4 font-medium text-white bg-primary rounded-md hover:bg-gray-700"
           >
             Login
           </button>
 
-          <p className="mt-4 text-sm text-center text-gray-600">
+          <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-400">
             Don’t have an Account?{" "}
             <Link to="/register" className="text-blue-500 cursor-pointer">
               Sign up
