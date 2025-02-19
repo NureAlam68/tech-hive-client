@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const Contact = () => {
       setMessage("Your message has been sent successfully!");
       setFormData({ name: "", email: "", message: "" });
       setErrors({});
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setMessage("Something went wrong. Please try again.");
     } finally {
@@ -53,15 +54,26 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center dark:bg-slate-950 px-4 md:px-6 lg:px-8 max-w-[1600px] mx-auto">
+      <Helmet>
+        <title>TechHive | Contact</title>
+      </Helmet>
       <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-8 border dark:border-gray-600 w-full">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white text-center">Contact Us</h1>
-        <p className="text-gray-600 dark:text-gray-300 text-center mb-6">We&apos;d love to hear from you!</p>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white text-center">
+          Contact Us
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
+          We&apos;d love to hear from you!
+        </p>
 
-        {message && <p className="text-green-600 text-center mb-4">{message}</p>}
+        {message && (
+          <p className="text-green-600 text-center mb-4">{message}</p>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">Name</label>
+            <label className="block text-gray-700 dark:text-gray-300">
+              Name
+            </label>
             <input
               type="text"
               name="name"
@@ -70,11 +82,15 @@ const Contact = () => {
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your name"
             />
-            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            )}
           </div>
 
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">Email</label>
+            <label className="block text-gray-700 dark:text-gray-300">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -83,11 +99,15 @@ const Contact = () => {
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your email"
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">Message</label>
+            <label className="block text-gray-700 dark:text-gray-300">
+              Message
+            </label>
             <textarea
               name="message"
               value={formData.message}
@@ -96,7 +116,9 @@ const Contact = () => {
               rows="4"
               placeholder="Write your message"
             />
-            {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+            )}
           </div>
 
           <button
@@ -104,7 +126,11 @@ const Contact = () => {
             disabled={loading}
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Send Message"}
+            {loading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              "Send Message"
+            )}
           </button>
         </form>
 

@@ -50,15 +50,15 @@ const ReportedProducts = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <Helmet>
         <title>TechHive | Reported Contents</title>
       </Helmet>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1600px] mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-3">
             <ShieldAlert className="w-8 h-8 text-red-500" />
-            <h2 className="text-3xl font-bold text-gray-900">Reported Products</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-200">Reported Products</h2>
           </div>
           <div className="bg-red-100 rounded-full px-4 py-2 flex items-center">
             <AlertTriangle className="w-5 h-5 text-red-500 mr-2" />
@@ -68,17 +68,17 @@ const ReportedProducts = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden">
           {reportedProducts.length > 0 ? (
             <div className="divide-y divide-gray-200">
               {reportedProducts.map((product) => (
                 <div 
                   key={product._id} 
-                  className="p-6 hover:bg-gray-50 transition-colors duration-200"
+                  className="p-6 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-900">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-300">
                         {product.productName}
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">
@@ -108,7 +108,7 @@ const ReportedProducts = () => {
           ) : (
             <div className="flex flex-col items-center justify-center py-12">
               <ShieldAlert className="w-16 h-16 text-gray-400 mb-4" />
-              <h3 className="text-xl font-medium text-gray-900 mb-2">
+              <h3 className="text-xl font-medium text-gray-900 mb-2 dark:text-gray-300">
                 No Reported Products
               </h3>
               <p className="text-gray-500">
