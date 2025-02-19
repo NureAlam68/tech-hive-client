@@ -4,6 +4,7 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import TrendingProducts from "../components/TrendingProducts";
 import CouponSlider from "../components/CouponSlider";
 import HowWorks from "../components/HowWorks";
+import Promotion from "../components/Promotion";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <TrendingProducts></TrendingProducts>
             <CouponSlider></CouponSlider>
             <HowWorks></HowWorks>
+            <Promotion></Promotion>
         </div>
     );
 };
