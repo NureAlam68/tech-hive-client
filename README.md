@@ -4,6 +4,17 @@
 
 ---
 
+## Admin
+- **Email:** nur11@gmail.com
+- **Password:** 1234Aa!
+---
+
+## Moderator
+- **Email:** sohag11@gmail.com
+- **Password:** 1234Aa!
+
+---
+
 ## 🔧 Technologies Used
 - **Frontend:** React.js, Tailwind CSS, DaisyUI, React Router
 - **Backend:** Node.js, Express.js, MongoDB
