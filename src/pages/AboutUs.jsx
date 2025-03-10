@@ -30,7 +30,7 @@ function AboutUs() {
         <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-200 tracking-tight mb-4">
-              Welcome to <span className="text-blue-600">TechHive</span>
+              Welcome to <span className="text-blue-700">TechHive</span>
             </h1>
             <p className="max-w-2xl mx-auto text-xl text-gray-300 leading-relaxed">
               Your ultimate hub for discovering and sharing the latest tech
@@ -44,7 +44,7 @@ function AboutUs() {
       {/* Main Content */}
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Mission Section */}
-        <div className="bg-white rounded-2xl shadow-sm p-8 mb-12 dark:bg-gray-900 border dark:border dark:border-gray-600">
+        <div className="bg-white rounded-2xl shadow-sm p-8 mb-12 dark:bg-black border dark:border dark:border-gray-600">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
             Our Mission
           </h2>
@@ -84,7 +84,7 @@ function AboutUs() {
           ].map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg p-6 transform transition-all duration-200 hover:scale-105 dark:bg-gray-900 border dark:border dark:border-gray-600"
+              className="bg-white rounded-xl shadow-lg p-6 transform transition-all duration-200 hover:scale-105 dark:bg-black border dark:border dark:border-gray-600"
             >
               <div className="text-blue-600 mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2 dark:text-gray-100">
@@ -98,7 +98,7 @@ function AboutUs() {
         </div>
 
         {/* What We Offer Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-xl p-8 text-white mb-12">
+        <div className="bg-blue-950 rounded-lg p-8 text-white mb-12">
           <div className="flex items-center mb-6">
             <Sparkles className="w-8 h-8 mr-3" />
             <h2 className="text-3xl font-bold">What We Offer</h2>
@@ -133,7 +133,7 @@ function AboutUs() {
         </div>
 
         {/* Contact Section */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 dark:bg-gray-900 border dark:border dark:border-gray-600">
+        <div className="bg-white rounded-lg p-8 dark:bg-black border dark:border dark:border-gray-600">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 dark:text-gray-100">
             Connect With Us
           </h2>

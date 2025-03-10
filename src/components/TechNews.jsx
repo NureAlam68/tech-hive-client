@@ -68,7 +68,7 @@ const TechNews = () => {
                                     href={news.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-4 w-full bg-gray-100 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    className="mt-4 w-full py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center bg-blue-900 text-white hover:bg-blue-950"
                                 >
                                     Read Article
                                     <ArrowRight className="ml-2 w-4 h-4" />

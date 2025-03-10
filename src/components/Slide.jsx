@@ -35,7 +35,7 @@ const Slide = ({ image, title, text }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="group relative inline-flex items-center px-4 py-2 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg rounded-lg"
+              className="group relative inline-flex items-center px-4 py-2 text-lg font-medium text-white border border-blue-700 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg rounded-lg bg-blue-900"
             >
               <span className="relative z-10 flex items-center">
                 Explore Now

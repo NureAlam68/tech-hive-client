@@ -54,7 +54,7 @@ const FeaturedProducts = () => {
             </div>
             <div className="flex justify-between items-center mt-4">
               <h3
-                className="text-lg font-semibold cursor-pointer text-blue-900"
+                className="text-lg font-semibold cursor-pointer text-blue-900 dark:text-blue-700"
                 onClick={() => navigate(`/product/${product._id}`)}
               >
                 See More

@@ -86,7 +86,7 @@ const TrendingProducts = () => {
               {product.upvote}
             </button>
             <h3
-              className="text-lg font-semibold cursor-pointer text-blue-900 mt-4"
+              className="text-lg font-semibold cursor-pointer text-blue-900 mt-4 dark:text-blue-600"
               onClick={() => navigate(`/product/${product._id}`)}
             >
               See More
