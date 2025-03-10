@@ -2,7 +2,7 @@ import { ArrowRight, Newspaper } from 'lucide-react';
 
 const TechNews = () => {
     return (
-        <section className="py-20 bg-gray-50 dark:bg-slate-950">
+        <section className="mt-10 md:mt-[60px] lg:mt-[80px] 2xl:mt-[100px] dark:bg-slate-950">
             <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-gray-200">
@@ -48,7 +48,7 @@ const TechNews = () => {
                             link: "https://www.wired.com/category/security/"
                         }
                     ].map((news, index) => (
-                        <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 dark:bg-gray-900">
+                        <div key={index} className="bg-white rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 dark:bg-black border dark:border-gray-600">
                             <img
                                 src={news.image}
                                 alt={news.title}

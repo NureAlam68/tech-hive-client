@@ -7,8 +7,8 @@ import {
   ChevronDown, 
   Home,
   Package,
-  CircuitBoard,
-  Network,
+  // CircuitBoard,
+  // Network,
   UserCircle,
   LogOut,
   LayoutDashboard,
@@ -82,10 +82,10 @@ const Navbar = () => {
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <Link to="/" className="flex items-center space-x-2">
-                  <div className="relative">
+                  {/* <div className="relative">
                     <CircuitBoard className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
                     <Network className="h-4 w-4 text-gray-600 dark:text-gray-300 absolute -bottom-1 -right-1" />
-                  </div>
+                  </div> */}
                   <div className="flex flex-col">
                     <span className="text-xl font-bold">
                       <span className="text-indigo-600 dark:text-indigo-400">Tech</span>

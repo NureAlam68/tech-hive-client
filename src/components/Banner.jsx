@@ -44,7 +44,7 @@ export default function Banner() {
         effect="fade"
         loop={true}
         autoplay={{
-          delay: 6000,
+          delay: 10000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -65,8 +65,8 @@ export default function Banner() {
             <Slide {...slide} />
           </SwiperSlide>
         ))}
-        <div className="swiper-button-next !text-white after:!text-2xl"></div>
-        <div className="swiper-button-prev !text-white after:!text-2xl"></div>
+        {/* <div className="swiper-button-next !text-white after:!text-2xl"></div> */}
+        {/* <div className="swiper-button-prev !text-white after:!text-2xl"></div> */}
       </Swiper>
     </motion.div>
   );

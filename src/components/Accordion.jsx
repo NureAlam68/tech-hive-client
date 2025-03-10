@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react';
 // eslint-disable-next-line react/prop-types
 const AccordionItem = ({ title, content, isOpen, onToggle }) => {
   return (
-    <div className="border-b border-gray-200 last:border-b-0 dark:bg-gray-950 dark:border dark:border-gray-600">
+    <div className="border-b border-gray-200 dark:bg-gray-950 dark:border dark:border-gray-600">
       <button
         className="w-full px-4 md:px-6 lg:px-8 py-4 flex items-center justify-between text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-800"
         onClick={onToggle}

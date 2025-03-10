@@ -44,7 +44,7 @@ const HowWorks = () => {
                 bgColor: "bg-green-100"
               }
             ].map((step, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center border p-4 dark:border-gray-600 rounded-lg dark:bg-black">
                 <div className={`mx-auto w-16 h-16 ${step.bgColor} rounded-full flex items-center justify-center mb-4`}>
                   <step.icon className={`w-8 h-8 ${step.color}`} />
                 </div>

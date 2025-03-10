@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Promotion = () => {
     return (
-        <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+        <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white mt-10 md:mt-[60px] lg:mt-[80px] 2xl:mt-[100px]">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>

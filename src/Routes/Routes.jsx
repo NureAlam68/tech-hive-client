@@ -83,9 +83,7 @@ export const router = createBrowserRouter([
         path: "updateProduct/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(
-            `https://tech-hive-server-one.vercel.app/products/${params.id}`
-          ),
+          fetch(`http://localhost:5000/products/${params.id}`),
       },
       // admin routes
       {

@@ -47,7 +47,7 @@ const CouponSlider = () => {
   };
 
   return (
-    <section className="py-16 mt-10 md:mt-[60px] lg:mt-[80px] 2xl:mt-[100px]">
+    <section className="mt-10 md:mt-[60px] lg:mt-[80px] 2xl:mt-[100px]">
       <div className="max-w-[1600px] mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -63,7 +63,7 @@ const CouponSlider = () => {
             <Slider {...sliderSettings}>
               {coupons.map((coupon) => (
                 <div key={coupon._id} className="px-4 py-2">
-                  <div className="bg-white dark:bg-gray-900 rounded-2xl border dark:border dark:border-gray-600 overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+                  <div className="bg-white dark:bg-black rounded-2xl border dark:border dark:border-gray-600 overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
                     <div className="relative p-8">
                       <div className="absolute top-0 right-0 bg-gradient-to-l from-blue-600 to-purple-600 text-white px-6 py-2 rounded-bl-2xl font-semibold">
                         {coupon.discount}$ OFF
