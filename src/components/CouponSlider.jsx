@@ -55,7 +55,7 @@ const CouponSlider = () => {
               Exclusive Offers
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-300">Don&apos;t miss out on these amazing deals!</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300">Don&apos;t miss out on these amazing deals!</p>
         </div>
 
         <div className="relative px-4 md:px-6 lg:px-8">

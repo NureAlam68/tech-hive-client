@@ -71,7 +71,7 @@ const ProductsPage = () => {
       <section className="max-w-[1600px] mx-auto px-4 py-16 sm:px-6 lg:px-8">
         {/* Header with animated gradient text */}
         <div className="text-center mb-5">
-          <h2 className="text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
+          <h2 className="text-5xl font-extrabold mb-6 text-black dark:text-gray-300">
             Discover Amazing Products
           </h2>
         </div>
@@ -84,7 +84,7 @@ const ProductsPage = () => {
             <input
               type="text"
               placeholder="Search by tag..."
-              className="w-full pl-14 pr-4 py-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all duration-200 text-lg dark:text-gray-200"
+              className="w-full pl-14 pr-4 py-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all duration-200 text-lg dark:text-gray-200"
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
@@ -93,7 +93,7 @@ const ProductsPage = () => {
           <div className="flex justify-end">
             <div className="relative inline-block">
               <select
-                className="appearance-none pl-4 pr-12 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all duration-200 text-gray-700 dark:text-gray-200"
+                className="appearance-none pl-4 pr-12 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all duration-200 text-gray-700 dark:text-gray-200"
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
               >
@@ -106,11 +106,11 @@ const ProductsPage = () => {
         </div>
 
         {/* Product Grid with Hover Effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {products?.map((product) => (
             <div
               key={product._id}
-              className="group bg-white dark:bg-gray-800 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              className="group bg-white dark:bg-black rounded-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden border dark:border-gray-600"
             >
               <div className="relative overflow-hidden aspect-w-16 aspect-h-9">
                 <img
@@ -123,8 +123,7 @@ const ProductsPage = () => {
 
               <div className="p-8">
                 <h3
-                  className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 cursor-pointer transition-colors duration-200"
-                  onClick={() => navigate(`/product/${product._id}`)}
+                  className="text-2xl font-bold text-gray-900 dark:text-white"
                 >
                   {product.productName}
                 </h3>
@@ -139,7 +138,12 @@ const ProductsPage = () => {
                     </span>
                   ))}
                 </div>
-
+                <h3
+                  className="text-2xl font-bold text-blue-500 mt-4 cursor-pointer"
+                  onClick={() => navigate(`/product/${product._id}`)}
+                >
+                  Details
+                </h3>
                 <div className="mt-8">
                   <button
                     onClick={() => handleUpvote(product._id)}
@@ -149,7 +153,7 @@ const ProductsPage = () => {
                       ${
                         product.email === user?.email
                           ? "bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
-                          : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-lg hover:shadow-blue-500/25"
+                          : "bg-blue-900 text-white"
                       }
                     `}
                   >
@@ -165,23 +169,21 @@ const ProductsPage = () => {
         {/* Enhanced Pagination */}
         <div className="flex justify-center items-center mt-20 space-x-3 md:space-x-6">
           <button
-            className="flex items-center gap-3 px-3 md:px-5 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-lg font-semibold"
+            className="flex items-center gap-3 px-3 md:px-5 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg border dark:border-gray-600 hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-lg font-semibold"
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
             <ChevronLeft className="w-5 h-5" />
-            <span>Previous</span>
           </button>
 
-          <span className="px-3 md:px-5 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl shadow-lg font-bold text-lg text-center">
+          <span className="px-3 md:px-5 py-2 bg-blue-950 text-white rounded-lg font-bold text-lg text-center">
             Page {currentPage}
           </span>
 
           <button
-            className="flex items-center gap-3 px-3 md:px-5 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 font-semibold"
+            className="flex items-center gap-3 px-3 md:px-5 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg border dark:border-gray-600 hover:shadow-xl transition-all duration-200 font-semibold"
             onClick={() => setCurrentPage((prev) => prev + 1)}
           >
-            <span>Next</span>
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>

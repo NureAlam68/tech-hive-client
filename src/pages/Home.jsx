@@ -20,8 +20,8 @@ const Home = () => {
             <FeaturedProducts></FeaturedProducts>
             <TrendingProducts></TrendingProducts>
             <Promotion></Promotion>
-            <TechNews></TechNews>
             <CouponSlider></CouponSlider>
+            <TechNews></TechNews>
             <HowWorks></HowWorks>
             <div className="mt-">
           <h2 className="text-2xl md:text-3xl font-semibold text-center text-gray-900 mb-8 dark:text-gray-200">
